@@ -2,6 +2,7 @@ class PhotoAlbumsController < ApplicationController
 
   respond_to :html, :json, :xml
   layout Spud::Photos.base_layout
+  skip_before_filter :verify_authenticity_token, :only => [:create]
 
   if Spud::Photos.galleries_enabled
     before_filter :get_gallery
