@@ -3,6 +3,7 @@ class Spud::Admin::PhotosController < Spud::Admin::ApplicationController
   include RespondsToParent
 
   before_filter :get_photo, :only => [:show, :edit, :update, :destroy]
+  skip_before_filter :verify_authenticity_token, :only => [:create]
   respond_to :html, :json, :xml, :js
   layout false
   cache_sweeper :spud_photo_sweeper, :only => [:create, :update, :destroy]
